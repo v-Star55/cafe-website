@@ -7,25 +7,25 @@ import Image from 'next/image'
 const galleryImages = [
   {
     src: 'https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=800&q=80',
-    alt: 'Cafe interior',
+    alt: 'Aurum café interior',
     span: 'row-span-2',
     aspect: 'aspect-auto h-full',
   },
   {
-    src: 'https://images.unsplash.com/photo-1600093463592-8e36ae95ef56?w=600&q=80',
-    alt: 'Espresso cup',
+    src: 'https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=600&q=80',
+    alt: 'Wood-fired pizza',
     span: '',
     aspect: 'aspect-square',
   },
   {
-    src: 'https://images.unsplash.com/photo-1507915600431-5292809c5ab7?w=600&q=80',
-    alt: 'Latte art',
+    src: 'https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?w=600&q=80',
+    alt: 'Iced coffee',
     span: '',
     aspect: 'aspect-square',
   },
   {
-    src: 'https://images.unsplash.com/photo-1442512595331-e89e73853f31?w=800&q=80',
-    alt: 'Coffee and book',
+    src: 'https://images.unsplash.com/photo-1559339352-11d035aa65de?w=800&q=80',
+    alt: 'Cocktails at the bar',
     span: 'col-span-2',
     aspect: 'aspect-[2/1]',
   },
@@ -95,7 +95,7 @@ export default function Gallery() {
           className="text-center mt-24 max-w-2xl mx-auto"
         >
           <div className="display text-3xl italic font-light text-[#D4AF6A] leading-relaxed mb-6">
-            "Coffee is not a beverage. It is a philosophy, a way of seeing the world through the lens of the moment."
+            "A table should hold more than one reason to stay — a pour, a plate, and something worth toasting."
           </div>
           <div className="text-[10px] tracking-[0.5em] text-[#8C7B6B] uppercase">— Marco Aureli, Founder</div>
         </motion.blockquote>

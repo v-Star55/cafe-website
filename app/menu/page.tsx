@@ -6,7 +6,8 @@ import Footer from '@/components/Footer'
 
 export const metadata: Metadata = {
   title: 'Menu — Aurum',
-  description: 'Explore our curated selection of single-origin coffee, pastries, and seasonal offerings.',
+  description:
+    'Coffee, iced drinks, pasta, pizza, burgers, cocktails, pastries, and brunch — explore the full Aurum menu.',
 }
 
 export default function MenuPage() {

@@ -7,23 +7,23 @@ import { useRef, useState, useEffect, useCallback } from 'react'
 const reviews = [
   {
     name: 'Élise Moreau',
-    role: 'Paris · Regular guest',
-    highlight: 'Pour-over ritual',
-    text: 'The pour-over ritual here feels like theatre. Quiet, warm, and impossibly refined — my Sunday anchor.',
+    role: 'Mumbai · Regular guest',
+    highlight: 'Truffle tagliatelle',
+    text: 'Brunch cortado, lunch pasta, evening spritz — we do all three here now. The truffle tagliatelle is unreal.',
     rating: 5,
   },
   {
     name: 'James Whitfield',
     role: 'London · Food writer',
-    highlight: 'Late-night dining',
-    text: 'Aurum balances luxury and comfort without trying too hard. The late-night dinner service is a hidden gem.',
+    highlight: 'Espresso martini',
+    text: 'Aurum balances café comfort with a proper kitchen. Pizza at lunch, burgers that hold up, cocktails that finish strong.',
     rating: 5,
   },
   {
     name: 'Sofia Nakamura',
     role: 'Tokyo · Architect',
-    highlight: 'Cortado perfection',
-    text: 'Every detail — from the ceramic cups to the playlist — is considered. I have never tasted a cortado this perfect.',
+    highlight: 'Iced coffee',
+    text: 'The Vietnamese iced coffee is my afternoon fix. Come back at night for negronis — same room, different mood.',
     rating: 5,
   },
   {
@@ -36,15 +36,15 @@ const reviews = [
   {
     name: 'Amélie Dubois',
     role: 'Lyon · Sommelier',
-    highlight: 'Single-origin',
-    text: 'Their single-origin selection rivals dedicated roasteries. The snacks menu pairs beautifully with natural wine.',
+    highlight: 'Margherita pizza',
+    text: 'Wood-fired dough with real D.O.P. tomatoes — and the bar knows how to build a spritz. Rare for a café this polished.',
     rating: 5,
   },
   {
     name: 'Oliver Hart',
     role: 'New York · Photographer',
-    highlight: 'Golden hour',
-    text: 'The light in this space at golden hour is magical. And the flat white? Worth the flight alone.',
+    highlight: 'Classic burger',
+    text: 'Golden hour light, a flat white, then the Aurum burger with friends. Exactly the kind of all-day spot you want nearby.',
     rating: 5,
   },
   {
@@ -211,7 +211,7 @@ export default function Reviews() {
             </motion.h2>
           </div>
           <p className="mt-5 text-[12px] tracking-[0.22em] text-[#8C7B6B] uppercase max-w-lg mx-auto leading-relaxed">
-            Stories from those who make Aurum their ritual
+            Coffee mornings, lunch plates, cocktail evenings
           </p>
         </motion.div>
 

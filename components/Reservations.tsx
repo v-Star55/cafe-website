@@ -3,6 +3,14 @@
 import { motion, useInView } from 'framer-motion'
 import { useRef, useState } from 'react'
 import Image from 'next/image'
+import {
+  ADDRESS_FULL,
+  CAFE_LOCATION_LABEL,
+  MAP_DIRECTIONS_URL,
+  MAP_EMBED_URL,
+  PHONE,
+  PHONE_PLACEHOLDER,
+} from '@/lib/location'
 
 const hours = [
   { day: 'Monday — Friday', time: '7:00 AM — 9:00 PM' },
@@ -11,14 +19,9 @@ const hours = [
   { day: 'Public Holidays', time: '10:00 AM — 6:00 PM' },
 ]
 
-const ADDRESS = '12 Rue de la Paix, Paris 75001'
-const MAP_QUERY = encodeURIComponent('12 Rue de la Paix, 75001 Paris, France')
-const MAP_EMBED_URL = `https://www.google.com/maps?q=${MAP_QUERY}&z=16&output=embed`
-const MAP_DIRECTIONS_URL = `https://www.google.com/maps/dir/?api=1&destination=${MAP_QUERY}`
-
 const details = [
-  { label: 'Address', value: ADDRESS },
-  { label: 'Phone', value: '+33 1 42 00 00 00' },
+  { label: 'Address', value: ADDRESS_FULL },
+  { label: 'Phone', value: PHONE },
   { label: 'Email', value: 'hello@aurum.cafe' },
   { label: 'Dress Code', value: 'Smart casual' },
 ]
@@ -156,7 +159,7 @@ export default function Reservations() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#0D0704] via-transparent to-transparent" />
               <div className="absolute bottom-4 left-6">
-                <div className="display text-sm italic text-[#D4AF6A]">Aurum, Paris</div>
+                <div className="display text-sm italic text-[#D4AF6A]">{CAFE_LOCATION_LABEL}</div>
               </div>
             </div>
 
@@ -261,7 +264,7 @@ export default function Reservations() {
                     type="tel"
                     value={form.phone}
                     onChange={(v) => setForm({ ...form, phone: v })}
-                    placeholder="+33 6 12 34 56 78"
+                    placeholder={PHONE_PLACEHOLDER}
                     required
                   />
                 </div>
@@ -408,8 +411,8 @@ export default function Reservations() {
 
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 bg-[#120A06] border-t border-[#2C1810] px-6 py-5">
               <div>
-                <div className="text-[9px] tracking-[0.4em] uppercase text-[#4A3020] mb-1">Aurum, Paris</div>
-                <div className="text-[13px] text-[#EDE8DC]">{ADDRESS}</div>
+                <div className="text-[9px] tracking-[0.4em] uppercase text-[#4A3020] mb-1">{CAFE_LOCATION_LABEL}</div>
+                <div className="text-[13px] text-[#EDE8DC]">{ADDRESS_FULL}</div>
               </div>
               <a
                 href={MAP_DIRECTIONS_URL}

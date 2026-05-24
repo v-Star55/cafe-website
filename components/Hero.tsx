@@ -19,7 +19,7 @@ export default function Hero() {
       <motion.div style={{ y: photoY, scale }} className="absolute inset-0">
         <Image
           src="/header-img.jpg"
-          alt="Aurum cafe interior with warm lighting and artisan coffee bar"
+          alt="Aurum café dining room with warm lighting, bar, and open kitchen"
           fill
           priority
           sizes="100vw"
@@ -74,7 +74,7 @@ export default function Hero() {
           transition={{ duration: 1, delay: 1.1 }}
           className="mt-8 text-[13px] tracking-[0.2em] text-[#8C7B6B] uppercase max-w-sm mx-auto leading-loose"
         >
-          Single-origin beans · Artisanal craft · Timeless ritual
+          Coffee · Kitchen · Cocktails · All day
         </motion.p>
 
         <motion.div

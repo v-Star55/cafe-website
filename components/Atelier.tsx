@@ -6,25 +6,28 @@ import Image from 'next/image'
 
 const experiences = [
   {
-    title: 'Cupping Sessions',
-    description: 'Guided tasting rituals led by our head barista. Learn to discern terroir, process, and roast through all five senses.',
-    image: 'https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=800&q=80',
-    duration: '90 min',
+    title: 'Pasta at the Pass',
+    description:
+      'Pull fresh tagliatelle with our chef, learn classic sauces, and sit down to the plates you made — with wine pairings.',
+    image: 'https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=800&q=80',
+    duration: '2.5 hrs',
+    guests: '6–10',
+  },
+  {
+    title: 'Cocktails & Small Plates',
+    description:
+      'An evening behind the bar: shake espresso martinis, build spritzes, and pair each pour with chef bites from the kitchen.',
+    image: 'https://images.unsplash.com/photo-1559339352-11d035aa65de?w=800&q=80',
+    duration: '2 hrs',
     guests: '4–8',
   },
   {
-    title: 'Latte Art Masterclass',
-    description: 'From rosetta to swan — master the choreography of steam wand and milk under the guidance of our artisans.',
-    image: 'https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=800&q=80',
-    duration: '2 hrs',
-    guests: '2–6',
-  },
-  {
-    title: 'Private Roastery Tour',
-    description: 'Step behind the velvet rope into our roastery. Witness green beans transform into the liquid gold of your morning.',
-    image: 'https://images.unsplash.com/photo-1442512595331-e89e73853f31?w=800&q=80',
-    duration: '3 hrs',
-    guests: '2–4',
+    title: 'Coffee & Pastry Morning',
+    description:
+      'Cupping, pour-over technique, and laminated pastry basics — start the day the way our team does.',
+    image: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=800&q=80',
+    duration: '90 min',
+    guests: '4–6',
   },
 ]
 
@@ -70,9 +73,8 @@ export default function Atelier() {
             transition={{ duration: 0.8, delay: 0.5 }}
             className="text-[#8C7B6B] leading-loose text-[15px] lg:pb-4"
           >
-            Beyond the cup lies a universe of craft and knowledge. Our atelier offers intimate 
-            encounters with the art of coffee — for the curious, the connoisseur, and those 
-            who simply wish to slow down and taste more deeply.
+            Hands-on sessions at the bar and in the kitchen — pasta workshops, cocktail 
+            evenings, and coffee mornings for guests who want to go beyond the menu.
           </motion.p>
         </div>
 

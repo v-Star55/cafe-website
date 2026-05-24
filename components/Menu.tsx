@@ -4,7 +4,18 @@ import { motion, useInView } from 'framer-motion'
 import { useRef, useState, useCallback, useEffect } from 'react'
 import Image from 'next/image'
 
-const categories = ['All', 'Coffee', 'Tea', 'Pastries', 'Breakfast']
+const categories = [
+  'All',
+  'Coffee',
+  'Iced Coffee',
+  'Tea',
+  'Pasta',
+  'Pizza',
+  'Burgers',
+  'Cocktails',
+  'Pastries',
+  'Breakfast',
+]
 
 type MenuItem = {
   name: string
@@ -18,58 +29,15 @@ type MenuItem = {
 }
 
 const menuItems: MenuItem[] = [
+  // Coffee
   {
     name: 'Single Origin Pour-Over',
     category: 'Coffee',
-    description: 'Ethiopian Yirgacheffe, hand-poured through Japanese Hario V60, 4 min extraction',
+    description: 'Ethiopian Yirgacheffe, hand-poured through Hario V60, four-minute extraction',
     price: '18',
     image: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=600&q=80',
     tag: 'Signature',
     popular: true,
-  },
-  {
-    name: 'Ceremonial Matcha',
-    category: 'Tea',
-    description: 'Uji ceremonial grade, oat milk, light agave, cold stone blend',
-    price: '16',
-    image: 'https://images.unsplash.com/photo-1515823662972-da6a2e4d3002?w=600&q=80',
-    tag: 'Seasonal',
-    popular: true,
-  },
-  {
-    name: 'Espresso Tasting',
-    category: 'Coffee',
-    description: 'Three consecutive shots — Guatemalan, Colombian, and Ethiopian — served with still water',
-    price: '24',
-    image: 'https://images.unsplash.com/photo-1510591509098-f4fdc6d0ff04?w=600&q=80',
-    tag: "Chef's Pick",
-    chefSpecial: true,
-  },
-  {
-    name: 'Croissant au Beurre',
-    category: 'Pastries',
-    description: '72-hour laminated dough, Normandy AOP butter, sea salt fleur de sel',
-    price: '12',
-    image: 'https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=600&q=80',
-    tag: null,
-  },
-  {
-    name: 'Cold Brew Reserve',
-    category: 'Coffee',
-    description: 'Sumatra Mandheling, 24-hour cold steep, served over crystal clear ice',
-    price: '14',
-    image: 'https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?w=600&q=80',
-    tag: null,
-    popular: true,
-  },
-  {
-    name: 'Avocado Toast Classique',
-    category: 'Breakfast',
-    description: 'Sourdough levain, Hass avocado, radish, microgreens, 62-degree egg',
-    price: '22',
-    image: 'https://images.unsplash.com/photo-1603046891726-36bfd957e0bf?w=600&q=80',
-    tag: 'Bestseller',
-    chefSpecial: true,
   },
   {
     name: 'Cortado Noir',
@@ -98,14 +66,188 @@ const menuItems: MenuItem[] = [
     tag: "Chef's Pick",
     chefSpecial: true,
   },
+  // Iced Coffee
   {
-    name: 'Truffle Eggs Benedict',
-    category: 'Breakfast',
-    description: 'Brioche muffin, black truffle hollandaise, Ibérico ham, chive oil',
-    price: '28',
-    image: 'https://images.unsplash.com/photo-1525351484163-7529414344d8?w=600&q=80',
+    name: 'Cold Brew Reserve',
+    category: 'Iced Coffee',
+    description: 'Sumatra Mandheling, 24-hour cold steep, served over crystal-clear ice',
+    price: '14',
+    image: 'https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?w=600&q=80',
+    tag: null,
+    popular: true,
+  },
+  {
+    name: 'Vietnamese Iced Coffee',
+    category: 'Iced Coffee',
+    description: 'Robusta espresso, sweetened condensed milk, shaken over ice',
+    price: '12',
+    image: '/menu-vietnamese-iced-coffee.jpg',
+    tag: 'Bestseller',
+    popular: true,
+  },
+  {
+    name: 'Salted Caramel Iced Latte',
+    category: 'Iced Coffee',
+    description: 'Double espresso, house caramel, sea salt, oat milk, served over ice',
+    price: '13',
+    image: 'https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=600&q=80',
+    tag: 'Seasonal',
+    popular: true,
+  },
+  {
+    name: 'Espresso Tonic',
+    category: 'Iced Coffee',
+    description: 'Double shot over Fever-Tree tonic, orange peel, cracked ice',
+    price: '11',
+    image: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=600&q=80',
+    tag: null,
+  },
+  // Tea
+  {
+    name: 'Ceremonial Matcha',
+    category: 'Tea',
+    description: 'Uji ceremonial grade, oat milk, light agave, cold stone blend',
+    price: '16',
+    image: 'https://images.unsplash.com/photo-1515823662972-da6a2e4d3002?w=600&q=80',
+    tag: 'Seasonal',
+    popular: true,
+  },
+  {
+    name: 'Jasmine Silver Needle',
+    category: 'Tea',
+    description: 'Fujian white tea, jasmine blossoms, served at 78°C in porcelain gaiwan',
+    price: '13',
+    image: '/menu-jasmine-tea.jpg',
+    tag: null,
+    popular: true,
+  },
+  // Pasta
+  {
+    name: 'Truffle Tagliatelle',
+    category: 'Pasta',
+    description: 'Fresh egg pasta, black truffle butter, Parmigiano, chive, cracked pepper',
+    price: '26',
+    image: 'https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=600&q=80',
     tag: "Chef's Pick",
     chefSpecial: true,
+    popular: true,
+  },
+  {
+    name: 'Cacio e Pepe',
+    category: 'Pasta',
+    description: 'Tonnarelli, Pecorino Romano, Tellicherry pepper, pasta water emulsion',
+    price: '22',
+    image: '/menu-cacio-e-pepe.jpg',
+    tag: 'Classic',
+    popular: true,
+  },
+  {
+    name: 'Pomodoro Basilico',
+    category: 'Pasta',
+    description: 'Rigatoni, San Marzano tomato, garlic confit, fresh basil, burrata',
+    price: '20',
+    image: '/menu-pomodoro-basilico.jpg',
+    tag: null,
+  },
+  // Pizza
+  {
+    name: 'Margherita D.O.P.',
+    category: 'Pizza',
+    description: '00 flour dough, fior di latte, San Marzano, basil, EVOO',
+    price: '19',
+    image: 'https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=600&q=80',
+    tag: 'Signature',
+    popular: true,
+  },
+  {
+    name: 'Prosciutto & Rocket',
+    category: 'Pizza',
+    description: '24-hour dough, mozzarella, Parma ham, arugula, shaved Grana Padano',
+    price: '24',
+    image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=600&q=80',
+    tag: null,
+    chefSpecial: true,
+  },
+  {
+    name: 'Funghi & Taleggio',
+    category: 'Pizza',
+    description: 'Wild mushrooms, taleggio, thyme, truffle oil, white base',
+    price: '23',
+    image: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=600&q=80',
+    tag: 'Seasonal',
+  },
+  // Burgers
+  {
+    name: 'Aurum Classic Burger',
+    category: 'Burgers',
+    description: 'Dry-aged beef patty, comté, caramelized onion, house sauce, brioche',
+    price: '21',
+    image: '/menu-aurum-classic-burger.jpg',
+    tag: 'Bestseller',
+    popular: true,
+  },
+  {
+    name: 'Truffle Mushroom Burger',
+    category: 'Burgers',
+    description: 'Grilled portobello & beef blend, truffle aioli, Swiss, arugula, sesame bun',
+    price: '23',
+    image: 'https://images.unsplash.com/photo-1550547660-d9450f859349?w=600&q=80',
+    tag: "Chef's Pick",
+    chefSpecial: true,
+  },
+  {
+    name: 'Crispy Chicken Burger',
+    category: 'Burgers',
+    description: 'Buttermilk fried chicken, pickled slaw, chipotle mayo, potato bun',
+    price: '19',
+    image: 'https://images.unsplash.com/photo-1606755962773-d324e0a13086?w=600&q=80',
+    tag: null,
+    popular: true,
+  },
+  // Cocktails
+  {
+    name: 'Espresso Martini',
+    category: 'Cocktails',
+    description: 'Vodka, fresh espresso, coffee liqueur, vanilla, three-bean foam',
+    price: '16',
+    image: 'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=600&q=80',
+    tag: 'Signature',
+    popular: true,
+  },
+  {
+    name: 'Aperol Spritz',
+    category: 'Cocktails',
+    description: 'Aperol, Prosecco, soda, orange wheel — golden hour in a glass',
+    price: '14',
+    image: '/menu-aperol-spritz.jpg',
+    tag: null,
+    popular: true,
+  },
+  {
+    name: 'Negroni Classico',
+    category: 'Cocktails',
+    description: 'Gin, Campari, sweet vermouth, orange peel, large rock',
+    price: '15',
+    image: 'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=600&q=80',
+    tag: 'Classic',
+    chefSpecial: true,
+  },
+  {
+    name: 'Lavender Gin Fizz',
+    category: 'Cocktails',
+    description: 'London dry gin, lavender syrup, lemon, egg white, soda top',
+    price: '15',
+    image: 'https://images.unsplash.com/photo-1536935338788-846bb9981813?w=600&q=80',
+    tag: 'Seasonal',
+  },
+  // Pastries & Breakfast
+  {
+    name: 'Croissant au Beurre',
+    category: 'Pastries',
+    description: '72-hour laminated dough, Normandy AOP butter, sea salt fleur de sel',
+    price: '12',
+    image: 'https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=600&q=80',
+    tag: null,
   },
   {
     name: 'Pistachio Croissant',
@@ -117,13 +259,30 @@ const menuItems: MenuItem[] = [
     chefSpecial: true,
   },
   {
-    name: 'Jasmine Silver Needle',
-    category: 'Tea',
-    description: 'Fujian white tea, jasmine blossoms, served at 78°C in porcelain gaiwan',
-    price: '13',
-    image: '/menu-jasmine-tea.jpg',
+    name: 'Pain au Chocolat',
+    category: 'Pastries',
+    description: 'Valrhona 70% batons, butter laminate, dusted cocoa, same-day bake',
+    price: '11',
+    image: '/menu-pain-au-chocolat.jpg',
     tag: null,
-    popular: true,
+  },
+  {
+    name: 'Avocado Toast Classique',
+    category: 'Breakfast',
+    description: 'Sourdough levain, Hass avocado, radish, microgreens, 62-degree egg',
+    price: '22',
+    image: 'https://images.unsplash.com/photo-1603046891726-36bfd957e0bf?w=600&q=80',
+    tag: 'Bestseller',
+    chefSpecial: true,
+  },
+  {
+    name: 'Truffle Eggs Benedict',
+    category: 'Breakfast',
+    description: 'Brioche muffin, black truffle hollandaise, Ibérico ham, chive oil',
+    price: '28',
+    image: 'https://images.unsplash.com/photo-1525351484163-7529414344d8?w=600&q=80',
+    tag: "Chef's Pick",
+    chefSpecial: true,
   },
   {
     name: 'Granola Parfait',
@@ -133,19 +292,11 @@ const menuItems: MenuItem[] = [
     image: 'https://images.unsplash.com/photo-1488477181946-6428a0291777?w=600&q=80',
     tag: null,
   },
-  {
-    name: 'Pain au Chocolat',
-    category: 'Pastries',
-    description: 'Valrhona 70% batons, butter laminate, dusted cocoa, same-day bake',
-    price: '11',
-    image: '/menu-pain-au-chocolat.jpg',
-    tag: null,
-  },
 ]
 
-const popularDrinks = menuItems.filter(
-  (item) => item.popular && (item.category === 'Coffee' || item.category === 'Tea')
-)
+const guestFavorites = menuItems
+  .filter((item) => item.popular)
+  .slice(0, 8)
 
 const chefSpecials = menuItems.filter((item) => item.chefSpecial)
 
@@ -164,7 +315,7 @@ export default function Menu() {
       <div className="absolute inset-0 pointer-events-none select-none overflow-hidden">
         <div className="absolute inset-x-0 top-0 h-[340px] sm:h-[420px] opacity-45">
           <Image
-            src="/coffee-top.jpg"
+            src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1600&q=80"
             alt=""
             fill
             priority
@@ -208,7 +359,7 @@ export default function Menu() {
             transition={{ duration: 0.7, delay: 0.35 }}
             className="mt-5 text-[12px] tracking-[0.22em] text-[#8C7B6B] uppercase max-w-md mx-auto leading-relaxed"
           >
-            Curated signatures · Seasonal plates · Full carte
+            Coffee · Pasta · Pizza · Burgers · Cocktails
           </motion.p>
         </div>
 
@@ -220,9 +371,9 @@ export default function Menu() {
           className="space-y-16 sm:space-y-20 mb-20 sm:mb-28"
         >
           <MenuCarousel
-            title="Popular Drinks"
-            subtitle="Most loved pours & infusions"
-            items={popularDrinks}
+            title="Guest Favorites"
+            subtitle="From morning coffee to evening cocktails"
+            items={guestFavorites}
             accent="guest"
           />
           <MenuCarousel
@@ -241,8 +392,8 @@ export default function Menu() {
         >
           <div className="relative rounded-[2rem] overflow-hidden border border-[#B8922A]/20 h-[220px] sm:h-[300px]">
             <Image
-              src="/coffee-pour.jpg"
-              alt="Latte art pour"
+              src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=1200&q=80"
+              alt="Cocktails and small plates at Aurum"
               fill
               className="object-cover"
               style={{ filter: 'brightness(0.5) saturate(0.9)' }}
@@ -251,9 +402,9 @@ export default function Menu() {
             <div className="absolute inset-0 bg-gradient-to-r from-[#120A06]/80 via-[#120A06]/40 to-[#120A06]/75" />
             <div className="absolute inset-0 flex items-center justify-center text-center px-6">
               <div>
-                <p className="text-[10px] tracking-[0.45em] uppercase text-[#B8922A] mb-4">Aurum Ritual</p>
+                <p className="text-[10px] tracking-[0.45em] uppercase text-[#B8922A] mb-4">All Day Aurum</p>
                 <h3 className="display text-[clamp(28px,4.5vw,52px)] font-light text-[#F5F0E8] leading-tight">
-                  Crafted with slow pours and warm moments
+                  Morning espresso, lunch at the table, cocktails at dusk
                 </h3>
               </div>
             </div>

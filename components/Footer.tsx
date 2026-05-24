@@ -2,6 +2,7 @@
 
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
+import { ADDRESS_LINE_1, ADDRESS_LINE_2, PHONE } from '@/lib/location'
 
 export default function Footer() {
   const ref = useRef(null)
@@ -14,10 +15,10 @@ export default function Footer() {
           {/* Brand */}
           <div className="md:col-span-2">
             <div className="display text-4xl font-light tracking-[0.3em] text-[#D4AF6A] mb-3">AURUM</div>
-            <div className="text-[9px] tracking-[0.5em] text-[#8C7B6B] uppercase mb-6">Refined Coffee Experience</div>
+            <div className="text-[9px] tracking-[0.5em] text-[#8C7B6B] uppercase mb-6">Café · Kitchen · Bar</div>
             <p className="text-[#8C7B6B] text-[13px] leading-loose max-w-xs">
-              A sanctuary of exceptional coffee, artisanal pastries, and timeless elegance 
-              in the heart of the city.
+              Coffee, iced drinks, pasta, pizza, burgers, pastries, and craft cocktails — 
+              served all day in the heart of the city.
             </p>
           </div>
 
@@ -42,9 +43,9 @@ export default function Footer() {
           <div>
             <div className="text-[10px] tracking-[0.5em] uppercase text-[#B8922A] mb-6">Find Us</div>
             <address className="not-italic">
-              <p className="text-[13px] text-[#EDE8DC] mb-2">12 Rue de la Paix</p>
-              <p className="text-[13px] text-[#8C7B6B] mb-6">Paris, France 75001</p>
-              <p className="text-[13px] text-[#8C7B6B]">+33 1 42 00 00 00</p>
+              <p className="text-[13px] text-[#EDE8DC] mb-2">{ADDRESS_LINE_1}</p>
+              <p className="text-[13px] text-[#8C7B6B] mb-6">{ADDRESS_LINE_2}</p>
+              <p className="text-[13px] text-[#8C7B6B]">{PHONE}</p>
               <p className="text-[13px] text-[#8C7B6B]">hello@aurum.cafe</p>
             </address>
           </div>

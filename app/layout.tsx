@@ -2,8 +2,9 @@ import type { Metadata } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'Aurum — Refined Coffee Experience',
-  description: 'A sanctuary of exceptional coffee, artisanal pastries, and timeless elegance.',
+  title: 'Aurum — Café, Kitchen & Bar',
+  description:
+    'Coffee, iced drinks, pasta, pizza, burgers, pastries, and craft cocktails — all day in the heart of the city.',
 }
 
 export default function RootLayout({

@@ -33,7 +33,7 @@ export default function VideoInterlude() {
                 Every detail, considered.
               </div>
               <div className="text-[10px] tracking-[0.6em] uppercase text-[#D4AF6A]">
-                From bean to cup
+                From kitchen to bar
               </div>
             </div>
           </div>

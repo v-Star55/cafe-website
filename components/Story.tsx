@@ -33,7 +33,7 @@ export default function Story() {
             >
               <Image
                 src="/coffee-in-mug.jpg"
-                alt="Espresso pouring into a cup with steam rising"
+                alt="Espresso and brunch spread at Aurum"
                 fill
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 50vw"
@@ -49,8 +49,8 @@ export default function Story() {
               className="absolute -bottom-10 -right-10 w-48 h-64 overflow-hidden border-4 border-[#1A0F0A]"
             >
               <Image
-                src="/beans.jpg"
-                alt="Close-up of roasted coffee beans"
+                src="/pasta.jpg"
+                alt="Penne pasta in creamy tomato sauce from the Aurum kitchen"
                 fill
                 className="object-cover"
                 sizes="192px"
@@ -85,9 +85,9 @@ export default function Story() {
                 transition={{ duration: 1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
                 className="display text-[clamp(42px,6vw,72px)] font-light leading-tight text-[#F5F0E8]"
               >
-                Born from a love
+                More than a
                 <br />
-                <span className="italic text-[#D4AF6A]">of the ritual</span>
+                <span className="italic text-[#D4AF6A]">coffee house</span>
               </motion.h2>
             </div>
 
@@ -97,10 +97,10 @@ export default function Story() {
               transition={{ duration: 0.8, delay: 0.5 }}
               className="text-[#8C7B6B] leading-loose text-[15px] mb-6"
             >
-              Aurum was founded on a singular conviction: that coffee, prepared with reverence 
-              and served with grace, is among life's most profound pleasures. We source only 
-              the most exceptional single-origin beans — from the volcanic highlands of Ethiopia 
-              to the misty slopes of Guatemalan mountains.
+              Aurum began as a neighbourhood coffee bar — and grew into the kind of café 
+              where you linger. We still obsess over single-origin beans and iced pours, but 
+              our kitchen now sends out fresh pasta, wood-fired pizza, and burgers built for 
+              sharing, while the bar pours espresso martinis and negronis into the evening.
             </motion.p>
 
             <motion.p
@@ -109,8 +109,8 @@ export default function Story() {
               transition={{ duration: 0.8, delay: 0.65 }}
               className="text-[#8C7B6B] leading-loose text-[15px] mb-10"
             >
-              Every cup is a conversation between the earth's terroir and the barista's art — 
-              a fleeting meditation in a world that moves too quickly.
+              Whether you drop in for a cortado, a plate of tagliatelle, or a spritz at golden 
+              hour — the table is set for the whole day.
             </motion.p>
 
             {/* Stats */}
@@ -121,9 +121,9 @@ export default function Story() {
               className="grid grid-cols-3 gap-8 pt-10 border-t border-[#2C1810]"
             >
               {[
-                { number: '16', label: 'Origins sourced' },
-                { number: '8', label: 'Master baristas' },
-                { number: '34k', label: 'Cups monthly' },
+                { number: '40+', label: 'Menu offerings' },
+                { number: '12', label: 'Signature cocktails' },
+                { number: '2.4k', label: 'Guests monthly' },
               ].map((stat) => (
                 <div key={stat.label} className="text-center">
                   <div className="display text-3xl font-light text-[#D4AF6A] mb-1">{stat.number}</div>
