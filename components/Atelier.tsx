@@ -126,24 +126,24 @@ function ExperienceRow({ exp, index }: { exp: typeof experiences[0], index: numb
         <h3 className="display text-3xl font-light text-[#F5F0E8] mb-4">{exp.title}</h3>
         <p className="text-[#8C7B6B] text-[14px] leading-loose mb-8">{exp.description}</p>
 
-        <div className="flex items-center gap-10">
-          <div>
-            <div className="text-[9px] tracking-[0.4em] uppercase text-[#8C7B6B] mb-1">Duration</div>
-            <div className="display text-[#D4AF6A]">{exp.duration}</div>
+        <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:gap-10">
+          <div className="flex items-center gap-8 sm:gap-10">
+            <div>
+              <div className="text-[9px] tracking-[0.4em] uppercase text-[#8C7B6B] mb-1">Duration</div>
+              <div className="display text-[#D4AF6A]">{exp.duration}</div>
+            </div>
+            <div className="w-px h-8 bg-[#2C1810]" />
+            <div>
+              <div className="text-[9px] tracking-[0.4em] uppercase text-[#8C7B6B] mb-1">Group Size</div>
+              <div className="display text-[#D4AF6A]">{exp.guests}</div>
+            </div>
           </div>
-          <div className="w-px h-8 bg-[#2C1810]" />
-          <div>
-            <div className="text-[9px] tracking-[0.4em] uppercase text-[#8C7B6B] mb-1">Group Size</div>
-            <div className="display text-[#D4AF6A]">{exp.guests}</div>
-          </div>
-          <div className="ml-auto">
-            <motion.button
-              whileHover={{ x: 6 }}
-              className="text-[10px] tracking-[0.4em] uppercase text-[#D4AF6A] border-b border-[#D4AF6A]/30 pb-1 hover:border-[#D4AF6A] transition-colors"
-            >
-              Book Experience
-            </motion.button>
-          </div>
+          <motion.button
+            whileHover={{ x: 6 }}
+            className="self-start sm:ml-auto shrink-0 text-[10px] tracking-[0.35em] sm:tracking-[0.4em] uppercase text-[#D4AF6A] border-b border-[#D4AF6A]/30 pb-1 hover:border-[#D4AF6A] transition-colors whitespace-nowrap"
+          >
+            Book Experience
+          </motion.button>
         </div>
       </div>
     </motion.div>

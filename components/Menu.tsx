@@ -3,6 +3,22 @@
 import { motion, useInView } from 'framer-motion'
 import { useRef, useState, useCallback, useEffect } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
+
+/** True on desktop with mouse; false on phones/tablets (touch). */
+function usePrefersHover() {
+  const [prefersHover, setPrefersHover] = useState<boolean | null>(null)
+
+  useEffect(() => {
+    const mq = window.matchMedia('(hover: hover) and (pointer: fine)')
+    const update = () => setPrefersHover(mq.matches)
+    update()
+    mq.addEventListener('change', update)
+    return () => mq.removeEventListener('change', update)
+  }, [])
+
+  return prefersHover
+}
 
 const categories = [
   'All',
@@ -303,7 +319,15 @@ const chefSpecials = menuItems.filter((item) => item.chefSpecial)
 export default function Menu() {
   const [activeCategory, setActiveCategory] = useState('All')
   const ref = useRef(null)
+  const fullMenuRef = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { once: true, margin: '-100px' })
+
+  const openFullMenu = useCallback((category: string) => {
+    setActiveCategory(category)
+    requestAnimationFrame(() => {
+      fullMenuRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    })
+  }, [])
 
   const filtered =
     activeCategory === 'All'
@@ -375,12 +399,14 @@ export default function Menu() {
             subtitle="From morning coffee to evening cocktails"
             items={guestFavorites}
             accent="guest"
+            onViewInFullMenu={openFullMenu}
           />
           <MenuCarousel
             title="Chef's Special"
             subtitle="Limited creations from our kitchen"
             items={chefSpecials}
             accent="chef"
+            onViewInFullMenu={openFullMenu}
           />
         </motion.div>
 
@@ -413,10 +439,12 @@ export default function Menu() {
 
         {/* Full menu divider */}
         <motion.div
+          ref={fullMenuRef}
+          id="menu-full"
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
           transition={{ duration: 0.7, delay: 0.45 }}
-          className="flex flex-col items-center mb-14 sm:mb-16"
+          className="flex flex-col items-center mb-14 sm:mb-16 scroll-mt-28"
         >
           <div className="flex items-center gap-6 w-full max-w-xl mb-6">
             <div className="flex-1 h-px bg-gradient-to-r from-transparent to-[#B8922A]/40" />
@@ -475,11 +503,13 @@ function MenuCarousel({
   subtitle,
   items,
   accent,
+  onViewInFullMenu,
 }: {
   title: string
   subtitle: string
   items: MenuItem[]
   accent: 'guest' | 'chef'
+  onViewInFullMenu: (category: string) => void
 }) {
   const trackRef = useRef<HTMLDivElement>(null)
   const [activeIndex, setActiveIndex] = useState(0)
@@ -584,7 +614,13 @@ function MenuCarousel({
           className="menu-carousel-track flex gap-4 sm:gap-5 overflow-x-auto px-6 sm:px-1 pb-2 scroll-smooth"
         >
           {items.map((item, i) => (
-            <CarouselCard key={item.name} item={item} index={i} accent={accent} />
+            <CarouselCard
+              key={item.name}
+              item={item}
+              index={i}
+              accent={accent}
+              onViewInFullMenu={onViewInFullMenu}
+            />
           ))}
         </div>
       </div>
@@ -609,12 +645,17 @@ function CarouselCard({
   item,
   index,
   accent,
+  onViewInFullMenu,
 }: {
   item: MenuItem
   index: number
   accent: 'guest' | 'chef'
+  onViewInFullMenu: (category: string) => void
 }) {
   const [hovered, setHovered] = useState(false)
+  const prefersHover = usePrefersHover()
+  const showCta = prefersHover !== true || hovered
+  const active = showCta
 
   return (
     <motion.article
@@ -625,13 +666,13 @@ function CarouselCard({
       transition={{ duration: 0.6, delay: index * 0.06, ease: [0.16, 1, 0.3, 1] }}
       onHoverStart={() => setHovered(true)}
       onHoverEnd={() => setHovered(false)}
-      className={`menu-carousel-card flex-shrink-0 w-[min(88vw,380px)] sm:w-[400px] flex flex-col sm:flex-row overflow-hidden group cursor-pointer ${
+      className={`menu-carousel-card flex-shrink-0 w-[min(88vw,380px)] sm:w-[400px] flex flex-col sm:flex-row overflow-hidden group ${
         accent === 'chef' ? 'menu-carousel-card--chef' : ''
       }`}
     >
       <div className="relative h-48 sm:h-auto sm:w-[42%] sm:min-h-[220px] overflow-hidden">
         <motion.div
-          animate={{ scale: hovered ? 1.06 : 1 }}
+          animate={{ scale: active ? 1.06 : 1 }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           className="absolute inset-0"
         >
@@ -661,17 +702,22 @@ function CarouselCard({
           <span className="display text-[#D4AF6A] text-lg flex-shrink-0">${item.price}</span>
         </div>
         <p className="text-[11px] text-[#8C7B6B] leading-relaxed line-clamp-3">{item.description}</p>
-        <motion.span
-          animate={{ opacity: hovered ? 1 : 0, y: hovered ? 0 : 4 }}
+        <motion.div
+          animate={{ opacity: showCta ? 1 : 0, y: showCta ? 0 : 4 }}
           transition={{ duration: 0.3 }}
-          className="mt-4 text-[9px] tracking-[0.35em] uppercase text-[#B8922A]"
         >
-          View in full menu ↓
-        </motion.span>
+          <button
+            type="button"
+            onClick={() => onViewInFullMenu(item.category)}
+            className="mt-4 text-[9px] tracking-[0.35em] uppercase text-[#B8922A] hover:text-[#F5F0E8] transition-colors text-left"
+          >
+            View in full menu ↓
+          </button>
+        </motion.div>
       </div>
 
       <motion.div
-        animate={{ scaleX: hovered ? 1 : 0 }}
+        animate={{ scaleX: active ? 1 : 0 }}
         transition={{ duration: 0.4 }}
         className="absolute bottom-0 left-0 right-0 h-px bg-[#B8922A] origin-left"
       />
@@ -681,6 +727,9 @@ function CarouselCard({
 
 function MenuCard({ item, index }: { item: MenuItem; index: number }) {
   const [hovered, setHovered] = useState(false)
+  const prefersHover = usePrefersHover()
+  const showCta = prefersHover !== true || hovered
+  const active = showCta
 
   return (
     <motion.div
@@ -690,11 +739,11 @@ function MenuCard({ item, index }: { item: MenuItem; index: number }) {
       transition={{ duration: 0.7, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
       onHoverStart={() => setHovered(true)}
       onHoverEnd={() => setHovered(false)}
-      className="relative bg-[#120A06] overflow-hidden group cursor-pointer"
+      className="relative bg-[#120A06] overflow-hidden group"
     >
       <div className="relative h-64 overflow-hidden">
         <motion.div
-          animate={{ scale: hovered ? 1.06 : 1 }}
+          animate={{ scale: active ? 1.06 : 1 }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           className="w-full h-full"
         >
@@ -738,18 +787,23 @@ function MenuCard({ item, index }: { item: MenuItem; index: number }) {
         <p className="text-[12px] text-[#8C7B6B] leading-relaxed mb-4">{item.description}</p>
 
         <motion.div
-          animate={{ opacity: hovered ? 1 : 0, y: hovered ? 0 : 6 }}
+          animate={{ opacity: showCta ? 1 : 0, y: showCta ? 0 : 6 }}
           transition={{ duration: 0.3 }}
-          className="text-[10px] tracking-[0.4em] uppercase text-[#B8922A]"
         >
-          Add to order &rarr;
+          <Link
+            href="/reservations"
+            className="inline-block text-[10px] tracking-[0.4em] uppercase text-[#B8922A] hover:text-[#F5F0E8] transition-colors py-1"
+            onClick={(e) => e.stopPropagation()}
+          >
+            Add to order &rarr;
+          </Link>
         </motion.div>
       </div>
 
       <motion.div
-        animate={{ scaleX: hovered ? 1 : 0 }}
+        animate={{ scaleX: active ? 1 : 0 }}
         transition={{ duration: 0.4 }}
-        className="absolute bottom-0 left-0 right-0 h-px bg-[#B8922A] origin-left"
+        className="absolute bottom-0 left-0 right-0 h-px bg-[#B8922A] origin-left pointer-events-none"
       />
     </motion.div>
   )
